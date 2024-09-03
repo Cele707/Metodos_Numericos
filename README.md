@@ -1,1 +1,1 @@
-Ejemplos de Códigos en C de los ejemplos que la profe da en clases
+Ejemplos de Códigos en C de lo que la profe da en clases
