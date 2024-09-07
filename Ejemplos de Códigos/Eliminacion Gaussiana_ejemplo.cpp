@@ -67,7 +67,7 @@ void gauss(double A[n][n], double B[n]){
 	double factor=0;
 	double swap=0;
 	double prod=1;
-	double X [n];
+	double X [n]; ////representa las incognitas
 	int p=0;
 
 	//Triangulacion->Obtener matriz triangular superior (Elementos por debajo de la diagonal principal = 0)
