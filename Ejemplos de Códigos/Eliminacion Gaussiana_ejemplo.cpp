@@ -124,5 +124,4 @@ void gauss(double A[n][n], double B[n]){
 		}
 		X[i]=X[i]/A[i][i];
 	}
-
 }
