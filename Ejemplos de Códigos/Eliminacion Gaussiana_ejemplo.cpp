@@ -68,7 +68,6 @@ void gauss(double A[n][n], double B[n]){
 	double swap=0;
 	double prod=1;
 	double X [n]; ////representa las incognitas
-	int p=0;
 
 	//Triangulacion->Obtener matriz triangular superior (Elementos por debajo de la diagonal principal = 0)
 	for(int i=0; i<(n-1); i++){
@@ -112,7 +111,7 @@ void gauss(double A[n][n], double B[n]){
 		prod=prod*A[i][i];
 	}
 	if(prod==0){
-		printf("\nEl sistema no tiene solución (su determinante es 0)");
+		printf("\nEl sistema no tiene solucion (su determinante es 0)");
 		exit(0);
 	}
 
@@ -123,5 +122,11 @@ void gauss(double A[n][n], double B[n]){
 			X[i] = X[i]-A[i][j]*X[j];
 		}
 		X[i]=X[i]/A[i][i];
+	}
+	
+	//Impresion de los valores de X
+	printf("\nLos valores de las incognitas son:\n");
+	for(int i=0; i<n; i++){
+		printf("X[%d]= %.2lf \n", i+1, X[i]);
 	}
 }
