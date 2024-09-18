@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 }
 //funcion
 double funcion(double x){
-	return ((-0.24 -0.28*x+0.38*pow(x, 2)));
+	return (log(pow(x, 2)+1)-sin(x));
 }
 //metodo de la biseccion
 void biseccion (double a, double b, int iter){

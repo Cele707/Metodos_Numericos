@@ -13,11 +13,10 @@ void gauss(double **A, double *B, double *X, int p);
 void imprimir(double **A, double *B, int p);
 void regresion_polinomial(double **A, double *B, double *Xi, double X[n], double Y[n], int p);
 void armar_polinomio(double *Xi, int p);
-void coeficiente_correlacion(double *Xi, double X[n], double Y[n], int p);
 
 int main(int argc, char *argv[]) {
 //declaracion de variables
-	double X[n]={1,1.2,1.5, 1.75, 2}, Y[n]={-0.148, -0.040, 0.181, 0.419, 0.700}; //datos
+	double X[n]={0,1, 1.5, 3, 5}, Y[n]={1.2,2.7, 3.9, 7.1, 10}; //datos
 	int p=0;
 //inicio
 	//ingresar orden polinomio
@@ -50,9 +49,6 @@ int main(int argc, char *argv[]) {
 		gauss(A, B, Xi, p);
 		//Mostramos el polinimio
 		armar_polinomio(Xi, p);
-		//Calculamos su coeficiente de correlacion
-		printf("\n");
-		coeficiente_correlacion(Xi, X, Y, p);
 	}
 	//liberar memoria
 	for (int i = 0; i <= p; i++) {
@@ -183,49 +179,3 @@ printf("\nEl polinomio obtenido es:\nP(x)=");
 		   }
 	}
 }
-
-
-void coeficiente_correlacion(double *Xi, double X[n], double Y[n], int p){
-	double suma_residuos = 0;//Sr
-	double suma_total = 0;//St
-	double media_Y = 0;
-	double estimado;//
-	
-// Calcular la media de Y
-	for (int i = 0; i < n; i++) {
-		media_Y += Y[i];
-	}
-	media_Y = media_Y / n;
-	
-// Calcular la suma de residuos y la suma total
-	for (int i = 0; i < n; i++) {
-// Evaluar el polinomio en X[i]
-		estimado = 0;
-		for (int j = 0; j <= p; j++) {
-			estimado += Xi[j] * pow(X[i], j);
-		}
-		
-// Suma de residuos-> suma de los cuadrados de las diferencias entre los valores observados y los valores predichos por el polinomio en cada punto de datos.
-		suma_residuos += pow(Y[i] - estimado, 2);
-		
-// Suma total->suma de los cuadrados de las diferencias entre los valores observados y la media de los valores observados
-		suma_total += pow(Y[i] - media_Y, 2);
-	}
-	
-// Calcular r e imprimir datos
-	double r = sqrt((suma_total - suma_residuos) / suma_total);
-	
-	printf("\nDatos para coeficiente de correlacion:\n");
-	printf("-Y media:%.4lf\n-Suma total:%.4lf\n-Suma residuo:%4lf\n",media_Y,suma_total, suma_residuos);
-	printf("\nEl coeficiente de correlacion es: %.4lf\n", r);
-	
-// Evaluar la calidad del ajuste
-	if (r > 0.9) {
-		printf("El ajuste es excelente.\n");
-	} else if (r > 0.8) {
-		printf("El ajuste es bueno.\n");
-	} else {
-		printf("El ajuste es deficiente.\n");
-	}
-}
-
