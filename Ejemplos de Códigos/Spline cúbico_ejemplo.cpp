@@ -19,6 +19,8 @@ void interpolar(double x[FILAS_MAX], double y[FILAS_MAX], double* X);
 //
 int main(int argc, char *argv[]) {
 	
+	bool op=true;
+	int op_menu=0;
 	int n = CANT_PUNTOS - 1; 
 	double A[FILAS_MAX][COLUMNAS_MAX] = {{0}}; // Inicializamos la matriz con ceros
 	double b[FILAS_MAX] = {0};// Inicializamos el vector b con ceros
@@ -35,7 +37,21 @@ int main(int argc, char *argv[]) {
 	//armamos ecuacoines
 	imprimir_ecuaciones(X, n);
 	//encontrar intervalo y la aproximacion
-	interpolar(x, y, X);
+	do{
+		printf("\nInterpolar valores(para salir presione cualquier numero distinto de 1):");
+		scanf("%d", &op_menu);
+		switch(op_menu){
+		case 1:
+			interpolar(x, y, X);
+			printf("\n");
+			break;
+		default:
+			op=false;
+			break;
+		}
+	} while(op!=false);
+	
+	
 	return 0;
 }
 
@@ -43,11 +59,11 @@ int main(int argc, char *argv[]) {
 void imprimir(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX]){
 	printf("\nLa matriz se ve de esta manera:\n");
 	int n=CANT_PUNTOS-1;
-	for(int i=0; i<(3*n)-1; i++){
-		for(int j=0; j<(3*n)-1; j++){
-			printf("%.2lf \t", A[i][j]);
+	for(int i=0; i<=(4*n)-1; i++){
+		for(int j=0; j<=(4*n)-1; j++){
+			printf("%.2lf-", A[i][j]);
 		}
-		printf("| %.2lf\n", B[i]);
+		printf("|%.2lf\n", B[i]);
 	}
 }
 
