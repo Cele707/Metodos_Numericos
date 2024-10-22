@@ -3,7 +3,13 @@
 #include <float.h>
 #include <math.h>
 #include <iostream>
-
+/*
+El método del trapecio es una técnica numérica para aproximar el valor de una integral definida, 
+donde se estima el área bajo una curva conectando los puntos inicial y final con una línea recta, formando un trapecio. 
+El área de este trapecio se utiliza como una aproximación de la integral.
+ Para mejorar la precisión, se puede dividir el intervalo en varias partes, creando más trapecios, 
+y sumando sus áreas para obtener una estimación más precisa del área total bajo la curva. 
+*/
 //funciones
 void trapecio_compuesto(double a, double b, double n);
 double funcion (double x);
