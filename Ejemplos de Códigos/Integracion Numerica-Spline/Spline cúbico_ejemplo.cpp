@@ -26,8 +26,8 @@ int main(int argc, char *argv[]) {
 	double b[FILAS_MAX] = {0};// Inicializamos el vector b con ceros
 	double* X = (double*)malloc((4*(CANT_PUNTOS-1)) * sizeof(double));
 	//puntos
-	double x[FILAS_MAX]={1, 2.6};
-	double y[FILAS_MAX]={2.1,7.5};
+	double x[FILAS_MAX]={1,2};
+	double y[FILAS_MAX]={4,7}; 
 	//spline cubico
 	spline_cubico(A, b, x, y);
 	//impresion
@@ -61,7 +61,7 @@ void imprimir(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX]){
 	int n=CANT_PUNTOS-1;
 	for(int i=0; i<=(4*n)-1; i++){
 		for(int j=0; j<=(4*n)-1; j++){
-			printf("%.2lf-", A[i][j]);
+			printf("%.2lf\t", A[i][j]);
 		}
 		printf("|%.2lf\n", B[i]);
 	}
@@ -189,9 +189,9 @@ void gauss(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX], double X[FILA
 void imprimir_ecuaciones(double* X, int n){
 	printf("\nEcuaciones de los splines cúbicos:\n");
 	for (int i = 0; i < n; i++) {
-		printf("S_%d(x) = %.2lf * x^3 ", i, X[4 * i]);
-		printf("%s %.2lf * x^2 ", X[4 * i + 1] >= 0 ? "+ " : "- ", fabs(X[4 * i + 1]));
-		printf("%s %.2lf * x ", X[4 * i + 2] >= 0 ? "+ " : "- ", fabs(X[4 * i + 2]));
+		printf("S_%d(x) = %.2lfx^3 ", i, X[4 * i]);
+		printf("%s %.2lfx^2 ", X[4 * i + 1] >= 0 ? "+ " : "- ", fabs(X[4 * i + 1]));
+		printf("%s %.2lfx ", X[4 * i + 2] >= 0 ? "+ " : "- ", fabs(X[4 * i + 2]));
 		printf("%s %.2lf\n", X[4 * i + 3] >= 0 ? "+ " : "- ", fabs(X[4 * i + 3]));
 	}
 }
