@@ -7,27 +7,31 @@ y no tenga saltos en las pendientes o curvaturas en los puntos donde se unen los
 #include <cmath>
 #include <cstdio>
 
-#define FILAS_MAX 20
-#define COLUMNAS_MAX 20
-#define CANT_PUNTOS 2
+//#define TAM 20
+//#define CANT_PUNTOS 5
+
+const int CANT_PUNTOS = 5; // cantidad de datos
+const int n = CANT_PUNTOS-1; // cantidad de subintervalos
+const int TAM = 4*n; // tamanio de las matrices A, b y z // sale de considerar que tenemos 4n incognitas y, por lo tanto, 4n ecuaciones
 //
-void spline_cubico(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX], double x[FILAS_MAX], double y[FILAS_MAX]);
-void gauss(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX], double *X);
-void imprimir(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX]);
+void spline_cubico(double A[TAM][TAM], double B[TAM], double x[TAM], double y[TAM]);
+void gauss(double A[TAM][TAM], double B[TAM], double *X);
+void imprimir(double A[TAM][TAM], double B[TAM]);
 void imprimir_ecuaciones(double* X, int n);
-void interpolar(double x[FILAS_MAX], double y[FILAS_MAX], double* X);
+void interpolar(double x[TAM], double y[TAM], double* X);
 //
 int main(int argc, char *argv[]) {
 	
 	bool op=true;
 	int op_menu=0;
 	int n = CANT_PUNTOS - 1; 
-	double A[FILAS_MAX][COLUMNAS_MAX] = {{0}}; // Inicializamos la matriz con ceros
-	double b[FILAS_MAX] = {0};// Inicializamos el vector b con ceros
+	double A[TAM][TAM] = {{0}}; // Inicializamos la matriz con ceros
+	double b[TAM] = {0};// Inicializamos el vector b con ceros
 	double* X = (double*)malloc((4*(CANT_PUNTOS-1)) * sizeof(double));
 	//puntos
-	double x[FILAS_MAX]={1,2};
-	double y[FILAS_MAX]={4,7}; 
+	double x[TAM]={1.0,1.2,1.7,2.5,2.6};
+	double y[TAM]={2.4,5.3,6.8,7.2,7.5};
+	
 	//spline cubico
 	spline_cubico(A, b, x, y);
 	//impresion
@@ -56,7 +60,7 @@ int main(int argc, char *argv[]) {
 }
 
 //FUNCOINES
-void imprimir(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX]){
+void imprimir(double A[TAM][TAM], double B[TAM]){
 	printf("\nLa matriz se ve de esta manera:\n");
 	int n=CANT_PUNTOS-1;
 	for(int i=0; i<=(4*n)-1; i++){
@@ -67,12 +71,11 @@ void imprimir(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX]){
 	}
 }
 
-void spline_cubico(double A[FILAS_MAX][COLUMNAS_MAX], double b[FILAS_MAX], double x[FILAS_MAX], double y[FILAS_MAX]){
-	int i=0, j=0, k=0;
+void spline_cubico(double A[TAM][TAM], double b[TAM], double x[TAM], double y[TAM]){
 	int n=CANT_PUNTOS-1;//intervalos
 	//Primeras 2n filas de A
-	for(k=0; k<n; k++){
-		for(j=0; j<4; j++){
+	for(int k=0; k<n; k++){
+		for(int j=0; j<4; j++){
 			A[2*k][4*k+j]= pow(x[k], 3-j);
 			A[2*k+1][4*k+j]= pow(x[k+1], 3-j);
 		}
@@ -80,31 +83,18 @@ void spline_cubico(double A[FILAS_MAX][COLUMNAS_MAX], double b[FILAS_MAX], doubl
 		b[2*k+1]= y[k+1];
 	}
 	//derivadas primeras
-	k=0;
-	for(i=(2*n); i<=((3*n)-2); i++){
-		for(j=0; j<=2; ++j){
-			A[i][4*k+j]= (3-j)*pow(x[k+1], 2-j);
-			A[i][4*(k+1)+j] = -(3-j)*pow(x[k+1], (2-j));
+	for(int k = 0; k <= n-2; k++){
+		for(int j = 0; j <= 2; j++){
+			A[2*n+k][4*k+j] = (3-j) * pow(x[k+1],2-j);
+			A[2*n+k][4*(k+1)+j] = -(3-j) * pow(x[k+1],2-j);
 		}
-		k++;
-		if(k > (n-2)){
-			break;
-		}
-		b[i] = 0;
 	}
-	
 	//derivadas segundas
-	k=0;
-	for(i=3*n-1; i<=4*n-3; i++){
-		A[i][4*k]= 6*x[k+1];
-		A[i][4*k+1]= 2;
-		A[i][4*k+4]= -6*x[k+1];
-		A[i][4*(k+1)+1]= -2;
-	k++;
-	if(k > (n-2)){
-		break;
-	}
-	b[i] = 0;
+	for(int k = 0; k <= n-2; k++){
+		A[3*n-1+k][4*k] = 3 * x[k+1];
+		A[3*n-1+k][4*k+1] = 1;
+		A[3*n-1+k][4*k+4] = -3 * x[k+1];
+		A[3*n-1+k][4*k+5] = -1;
 	}
 	
 	//Ultimas filas de A
@@ -115,7 +105,7 @@ void spline_cubico(double A[FILAS_MAX][COLUMNAS_MAX], double b[FILAS_MAX], doubl
 	b[4*n-2]= 0;
 	b[4*n-1]= 0;
 }
-void gauss(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX], double X[FILAS_MAX]){
+void gauss(double A[TAM][TAM], double B[TAM], double X[TAM]){
 	//declaracion de variables
 	int n= 4*(CANT_PUNTOS-1);//intervalos
 	double factor=0;
@@ -189,13 +179,13 @@ void gauss(double A[FILAS_MAX][COLUMNAS_MAX], double B[FILAS_MAX], double X[FILA
 void imprimir_ecuaciones(double* X, int n){
 	printf("\nEcuaciones de los splines cúbicos:\n");
 	for (int i = 0; i < n; i++) {
-		printf("S_%d(x) = %.2lfx^3 ", i, X[4 * i]);
-		printf("%s %.2lfx^2 ", X[4 * i + 1] >= 0 ? "+ " : "- ", fabs(X[4 * i + 1]));
+		printf("S_%d(x) = %.2lfx³ ", i, X[4 * i]);
+		printf("%s %.2lfx² ", X[4 * i + 1] >= 0 ? "+ " : "- ", fabs(X[4 * i + 1]));
 		printf("%s %.2lfx ", X[4 * i + 2] >= 0 ? "+ " : "- ", fabs(X[4 * i + 2]));
 		printf("%s %.2lf\n", X[4 * i + 3] >= 0 ? "+ " : "- ", fabs(X[4 * i + 3]));
 	}
 }
-void interpolar(double x[FILAS_MAX], double y[FILAS_MAX], double* X){	
+void interpolar(double x[TAM], double y[TAM], double* X){	
 	
 double valor_interpolar=0;
 int n=CANT_PUNTOS;

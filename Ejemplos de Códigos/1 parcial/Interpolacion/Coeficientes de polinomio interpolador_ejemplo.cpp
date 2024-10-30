@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
-#define n 2 //cantidad de datos (contado desde o)
+#define n 4 //cantidad de datos (contado desde o)
 
 //encontrar los coeficientes del polinomio interpolador
 /*resolver un sistema de ecuaciones lineales utilizando
@@ -15,7 +15,7 @@ void obtener_valor(double Xi[n]);
 
 int main(int argc, char *argv[]) {
 	//declaracion de variables
-	double X[n]={1,2}, Y[n]={4,7}; //datos
+	double X[n]={3, 4.5, 7, 9}, Y[n]={2.5, 1, 2.5, 0.5};; //datos
 	double A[n][n], B[n], Xi[n];
 	printf("----------------------------------\n");
 	printf("Armamos el polinomio interpolador:\n");
