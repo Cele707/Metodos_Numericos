@@ -26,8 +26,6 @@ int main(int argc, char *argv[]) {
 		printf("Error al abrir el archivo.\n");
 		return 1;
 	}
-	// Escribir los valores iniciales en el archivo
-	fprintf(file, "%lf\t%lf\n", x0, y0);
 	
 	if (file == NULL) {
 		printf("Error al abrir el archivo.\n");
