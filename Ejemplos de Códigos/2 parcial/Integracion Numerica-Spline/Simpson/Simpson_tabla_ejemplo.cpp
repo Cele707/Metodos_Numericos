@@ -5,21 +5,19 @@
 #include <iostream>
 #include <stdio.h>
 
-
 /*EN EL CASO DE Q SE NOS DE UNA TABLA CON DATOS NO EQUIESPACIADOS SE DEBE ARMAR UNA NUEVA TABLA AHORA SI CON 
 LOS VALORES EQUIESPACIADOS UTILIZANDO INTERPOLACION A TRAVES DE SPLINE CUBICO
-(COLOCAMOS COMO "X" y "Y" LOS VALORES Q SE NOS PROPORCIONARON  LUEGO COMPLETAMOS
-Por ejemplo;
-x       y
+Primero obtnemos los x a partir de el x0=a y el xn=b q se nos da, tmb se nos debe decir la cantidad de subintervalos (n)
+Entonces haces a-b/n -> cuanto va a haber entre cada numero de x. Obtenemos entonces algo as:
+x      y
 1      2.1
 1.4    ---
 1.8    ---
 2.2    ---
 2.6    7.5
-En este caso ponemos 
-double x[FILAS_MAX]={1, 2.6};
-double y[FILAS_MAX]={2.1,7.5};
-En el spline, corremos el programa y luego los interpolamos
+
+Ponemos en el Spline la tabla original q nos dieron e interpolamos las x q obtuvimos
+Entonces tenemos asi los y
 */
 
 double simpson(double x[], double y[], int n);
