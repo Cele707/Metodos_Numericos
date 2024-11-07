@@ -16,12 +16,13 @@ int main(int argc, char *argv[]) {
 }
 //
 double f (double x){
-	return (pow(x,3) * 2);
+	return((2*x/(pow(x, 2)+1))-cos(x));
 }
 	
 void gauss_legendre(){
 //definir limites de integracion
 	double a,b;
+	printf("GAUSS-LEGENDRE\n");
 	printf("Ingrese los limites de integracion\n");
 	printf("a:");
 	scanf("%lf",&a);

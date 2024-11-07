@@ -29,8 +29,8 @@ int main(int argc, char *argv[]) {
 	double b[TAM] = {0};// Inicializamos el vector b con ceros
 	double* X = (double*)malloc((4*(CANT_PUNTOS-1)) * sizeof(double));
 	//puntos
-	double x[TAM]={1.0,1.2,1.7,2.5,2.6};
-	double y[TAM]={2.4,5.3,6.8,7.2,7.5};
+	double x[TAM]={1.00, 1.20, 1.45, 1.78, 2.00};
+	double y[TAM]={-0.1483, -0.0400, 0.1395, 0.4493, 0.7001};
 	
 	//spline cubico
 	spline_cubico(A, b, x, y);
@@ -179,10 +179,10 @@ void gauss(double A[TAM][TAM], double B[TAM], double X[TAM]){
 void imprimir_ecuaciones(double* X, int n){
 	printf("\nEcuaciones de los splines cúbicos:\n");
 	for (int i = 0; i < n; i++) {
-		printf("S_%d(x) = %.2lfx³ ", i, X[4 * i]);
-		printf("%s %.2lfx² ", X[4 * i + 1] >= 0 ? "+ " : "- ", fabs(X[4 * i + 1]));
-		printf("%s %.2lfx ", X[4 * i + 2] >= 0 ? "+ " : "- ", fabs(X[4 * i + 2]));
-		printf("%s %.2lf\n", X[4 * i + 3] >= 0 ? "+ " : "- ", fabs(X[4 * i + 3]));
+		printf("S_%d(x) = %.6lfx³ ", i, X[4 * i]);
+		printf("%s %.6lfx² ", X[4 * i + 1] >= 0 ? "+ " : "- ", fabs(X[4 * i + 1]));
+		printf("%s %.6lfx ", X[4 * i + 2] >= 0 ? "+ " : "- ", fabs(X[4 * i + 2]));
+		printf("%s %.6lf\n", X[4 * i + 3] >= 0 ? "+ " : "- ", fabs(X[4 * i + 3]));
 	}
 }
 void interpolar(double x[TAM], double y[TAM], double* X){	

@@ -3,21 +3,21 @@
 #include<stdlib.h>
 #include<math.h>
 
-#define n 3// cantidad de datos, numero de puntos
+#define n 5// cantidad de datos, numero de puntos
 /*
 La diferenciación numérica es un método para calcular la derivada de una función a partir de valores discretos (datos). 
 Se utiliza cuando no se tiene la expresión exacta de la función, pero sí puntos conocidos de la función en ciertos valores de xx.
 */
 
 double f(double x){ // funcion a definir
-	return(log(x) + 1/x);
+	return(log(pow(x, 2) + 1)-sin(x));
 }
 	
 //PARA PRIMERA DERIVADAS
 int main(int argc, char *argv[]) {
 //declaracion
 	// Vectores "x" e "y"
-	double x[n] = {1.5,2,2.5}; // vector de x de datos
+	double x[n] = {1.0, 1.25, 1.5, 1.75, 2}; // vector de x de datos
 	double y[n]={0};
 	int op_menu=0;
 	
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 	printf("i |   x   |   y   \n");
 	printf("--|-------|------\n");
 	for (int j = 0; j < n; j++) {
-		printf(" %d| %.2f  | %.3f \n", j, x[j], y[j]);
+		printf(" %d| %.2f  | %.5f \n", j, x[j], y[j]);
 	}
 	printf("\n");
 //inicio

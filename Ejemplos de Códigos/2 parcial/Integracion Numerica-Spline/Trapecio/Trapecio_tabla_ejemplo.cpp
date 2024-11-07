@@ -23,8 +23,8 @@ int main() {
 	int n = 5;
 	
 	// Vectores "x" e "y"
-	double x[] = {1.0, 1.4, 1.8, 2.2, 2.6};
-	double y[] = {2.1, 3.45, 4.80, 6.15, 7.5};
+	double x[] = {1.0, 1.25, 1.5, 1.75, 2};
+	double y[] = {0.56129 , 0.658968, 0.851628, 1.037961, 1.12931};
 	
 	double h = x[1] - x[0]; // como están equiespaciados, h es lo mismo para cualquier par de datos
 	
