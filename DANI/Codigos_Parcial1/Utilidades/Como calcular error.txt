@@ -1,0 +1,11 @@
+Error absoluto (e): 
+    En vectores: 
+        e = || x_nuevo - x_viejo || = sqrt(pow(sumatoria(x_nuevo - x_viejo),2))
+    En escalares: 
+        e = |x_nuevo - x_viejo|
+
+Error relativo (E):
+    E = e / ||x_nuevo||
+
+Error porcentual (E%):
+    E% = E * 100

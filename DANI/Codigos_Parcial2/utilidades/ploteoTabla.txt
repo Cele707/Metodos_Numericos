@@ -1,0 +1,23 @@
+// ----------------------- Lo siguiente se tiene que copiar en Google Colab: -----------------------
+/*
+#Paquetes
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Leo los datos
+data = np.loadtxt('tabla_Euler.txt')  # leo el archivo
+x = data[:, 0]  # primera columna
+y = data[:, 1]  # segunda columna
+
+# Grafico
+plt.plot(x, y, marker='o', color='r', label='Datos de Euler')  # ploteo el grafico con referencia
+plt.xlim(-1, 1.5)  # limites del eje x
+plt.ylim(0, 3)  # limites del eje y
+plt.title('plot')  # titulo del grafico
+plt.xlabel('x')  # nombre del eje x
+plt.ylabel('y')  # nombre del eje y
+plt.legend()  # añadir la leyenda
+plt.show()
+*/
+// NOTA: hay que cargarle al Colab el archivo con la tabla y modificar el path del codigo
