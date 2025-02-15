@@ -7,7 +7,7 @@ double F(double x, double *y, int index) {
 	switch (index) {
 	case 0: return 3 * x + y[1]; // F1(x, y1, y2) = 3x + y2
 	case 1: return pow(x, 2) - y[0] - 1; // F2(x, y1, y2) = x^2 - y1 - 1
-	default: return 0; // Si hay más ecuaciones, modificar aquí
+	default: return 0;
 	}
 }
 
@@ -17,19 +17,19 @@ int main() {
 	float num_ecuaciones_float;
 	int num_ecuaciones;
 	
-	// Entrada de número de ecuaciones como float, redondeado a int
+	// Entrada de número de ecuaciones
 	printf("Ingrese la cantidad de ecuaciones diferenciales: ");
 	scanf("%f", &num_ecuaciones_float);
 	num_ecuaciones = round(num_ecuaciones_float);
 	
-	// Apertura del archivo para guardar resultados
-	FILE *file = fopen("SistemaEDO-Euler.txt", "w");
+	// Apertura del archivo
+	FILE *file = fopen("Euler_Sistema_EDO.txt", "w");
 	if (file == NULL) {
 		printf("Error al abrir el archivo.\n");
 		return 1;
 	}
 	
-	// Entrada del método para definir h o n
+	// Definir el método para elegir h o n
 	do {
 		printf("\nSeleccione un método para definir el paso:\n");
 		printf("1- Ingresar cantidad de subintervalos (n)\n");
@@ -48,7 +48,7 @@ int main() {
 		case 2:
 			printf("Ingrese el valor de h: ");
 			scanf("%lf", &h);
-			n = (xf - x0) / h;
+			n = ((xf - x0) / h);
 			n = ceil((xf - x0) / h);
 			printf("El 'n' obtenido es de %d\n", n);
 			break;
@@ -60,9 +60,9 @@ int main() {
 		}
 	} while (op_menu < 1 || op_menu > 2);
 	
-	// Asignación de memoria dinámica para arreglos
-	double *x = (double *)malloc((n + 1) * sizeof(double));
-	double *y = (double *)malloc((num_ecuaciones * (n + 1)) * sizeof(double));
+	// Asignación de memoria
+	double *x = (double *)malloc((n + 2) * sizeof(double)); // Se usa n+2 por si hay que agregar x=1
+	double *y = (double *)malloc((num_ecuaciones * (n + 2)) * sizeof(double));
 	
 	if (x == NULL || y == NULL) {
 		printf("Error de asignación de memoria.\n");
@@ -70,16 +70,16 @@ int main() {
 		return 1;
 	}
 	
-	// Inicialización de condiciones iniciales
+	// Condiciones iniciales
 	x[0] = x0;
-	y[0] = 0.0; // y1(0) = 0
-	y[1] = 1.0; // y2(0) = 1
+	y[0] = 0.0;
+	y[1] = 1.0;
 	for (int i = 2; i < num_ecuaciones; i++) {
-		y[i] = 0.0; // Inicializar en 0 por defecto si hay más ecuaciones
+		y[i] = 0.0;
 	}
 	
 	// Imprimir y guardar condiciones iniciales
-	fprintf(file, "%lf", x[0]); // Guardar x0
+	fprintf(file, "%lf", x[0]);
 	printf("\nX0 = %lf", x[0]);
 	for (int i = 0; i < num_ecuaciones; i++) {
 		fprintf(file, "\t%lf", y[i]);
@@ -88,10 +88,9 @@ int main() {
 	fprintf(file, "\n");
 	printf("\n");
 	
-	// Aplicar el método de Euler
+	// Método de Euler
 	for (int i = 0; i < n; i++) {
-		x[i + 1] = x[i] + h; // Avanzar en x
-		
+		x[i + 1] = x[i] + h;
 		for (int j = 0; j < num_ecuaciones; j++) {
 			y[(i + 1) * num_ecuaciones + j] = y[i * num_ecuaciones + j] + h * F(x[i], &y[i * num_ecuaciones], j);
 		}
@@ -99,12 +98,10 @@ int main() {
 		// Imprimir en consola y guardar en archivo
 		printf("X%d = %lf", i + 1, x[i + 1]);
 		fprintf(file, "%lf", x[i + 1]);
-		
 		for (int j = 0; j < num_ecuaciones; j++) {
 			printf("\tY%d%d = %lf", j + 1, i + 1, y[(i + 1) * num_ecuaciones + j]);
 			fprintf(file, "\t%lf", y[(i + 1) * num_ecuaciones + j]);
 		}
-		
 		printf("\n");
 		fprintf(file, "\n");
 	}
@@ -116,3 +113,5 @@ int main() {
 	
 	return 0;
 }
+
+

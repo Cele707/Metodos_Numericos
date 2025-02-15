@@ -32,7 +32,7 @@ int main() {
 		n = (xf - x0) / h;
 		n = ceil((xf - x0) / h);
 	} else {
-		printf("Opci\u00f3n no v\u00e1lida.\n");
+		printf("Opcion no valida.\n");
 		return 1;
 	}
 	
@@ -49,7 +49,7 @@ int main() {
 	y1[0] = 0.0;
 	y2[0] = 1.0;
 	
-	FILE *file = fopen("RK4_Sistema_EDO.txt", "w");
+	FILE *file = fopen("RK4_Sistema_EDO2.txt", "w");
 	if (file == NULL) {
 		printf("Error al abrir el archivo.\n");
 		return 1;
