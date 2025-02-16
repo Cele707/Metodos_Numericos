@@ -5,12 +5,16 @@
 double funcion (double);
 void biseccion (double, double, int);
 
+//funcion
+double funcion(double x){
+	return(log(pow(x,2)+1)-sin(x));
+}
 int main(int argc, char *argv[]) {
 	//declaracion de variables
 	double a, b;
 	int iter=0;
 	//obtencion de datos
-	printf("\nCalculo de las raices de una funcion aplicando el metodo e biseccion\n");
+	printf("\nCalculo de las raices de una funcion aplicando el metodo de biseccion\n");
 	printf("\nIngrese el extremo del intervalo por la izquierda:");
 	scanf("%lf", &a);	
 	printf("\nIngrese el extremo del intervalo por la derecha:");
@@ -20,15 +24,11 @@ int main(int argc, char *argv[]) {
 	
 	return 0;
 }
-//funcion
-double funcion(double x){
-	return (2*x)-4;
-}
 //metodo de la biseccion
 void biseccion (double a, double b, int iter){
 	//declaracion
 	double tol=10*exp(-10);
-	double error, c;
+	double error, error_p, c;
 	//inicio
 	if((funcion(a)*funcion(b))>0){//comprabamos que haya raiz en el intervalo
 		printf("No hay raiz en ese intervalo");
@@ -37,7 +37,7 @@ void biseccion (double a, double b, int iter){
 		do{
 			iter++;
 			c=(a+b)/2;
-			/*Si hicieramos el método de regula falsi c=(a*funcion(b) - b*funcion(a)) / (funcion(b) - funcion(a))*/
+			//REGULA FALSI-> c=(a*funcion(b) - b*funcion(a)) / (funcion(b) - funcion(a)); 
 			if((funcion(a)*funcion(c))>0){//significa que no hay cambio de signo entre a y c, por lo que la raíz debe estar en el intervalo [c,b]
 				a=c;
 			}
@@ -51,7 +51,8 @@ void biseccion (double a, double b, int iter){
 				}
 			}
 			error=(b-a)/2;
-		} while(error > tol);
-		printf("\nLa raiz es %lf\nEl error aproximado es %lf\nLa cantidad de iteraciones realizadas es de %d", c, error, iter);
+			error_p=((b-a)/2) * (1/c) * 100;
+		} while(error > tol && iter<=9);
+		printf("\nLa raiz es %lf\nEl error absoluto es %lf y el error porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d", c, error, error_p, iter);
 	}
 }
