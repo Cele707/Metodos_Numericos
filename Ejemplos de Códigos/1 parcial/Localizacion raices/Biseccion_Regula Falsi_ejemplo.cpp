@@ -51,7 +51,7 @@ void biseccion (double a, double b, int iter){
 				}
 			}
 			error=(b-a)/2;
-			error_p=((b-a)/2) * (1/c) * 100;
+			error_p=abs((b-a)/2) * (1/c) * 100;
 		} while(error > tol && iter<=9);
 		printf("\nLa raiz es %lf\nEl error absoluto es %lf y el error porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d", c, error, error_p, iter);
 	}

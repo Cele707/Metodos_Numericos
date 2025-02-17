@@ -17,11 +17,11 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 //FUNCIONES
-double funcion (double x){
-	return exp(x)-pow(x, 2);
+double funcion (double x){ //funcion a definir
+	return(log(pow(x,2)+1)-sin(x));
 }
-double derivada_f(double x){
-	return exp(x)-2*x ;
+double derivada_f(double x){//derivada de la funcion
+	return((2*x / (pow(x,2)+1)) - cos(x));
 }
 void newton_raphson (double x_viejo){
 	double tol=10*exp(-10);
@@ -37,11 +37,11 @@ void newton_raphson (double x_viejo){
 		}
 		else{
 			error=abs(x_nuevo-x_viejo);
-			error_porcentual=((x_nuevo - x_viejo)/x_viejo)*100;
+			error_porcentual=abs((x_nuevo - x_viejo)/x_viejo)*100;
 			x_viejo=x_nuevo;
 		}
 		
 		
-	} while(error > tol && iteracion<=100000);
+	} while(error > tol && iteracion<=0);
 	printf("\nLa raiz es %lf\nEl error aproximado es %lf y el porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d",x_viejo, error, error_porcentual, iteracion);
 }
