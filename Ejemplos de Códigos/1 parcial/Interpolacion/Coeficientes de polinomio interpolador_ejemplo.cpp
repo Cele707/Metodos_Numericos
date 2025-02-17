@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
-#define n 4 //cantidad de datos (contado desde o)
+#define n 5 //cantidad de datos (contado desde o)
 
 //encontrar los coeficientes del polinomio interpolador
 /*resolver un sistema de ecuaciones lineales utilizando
@@ -15,7 +15,7 @@ void obtener_valor(double Xi[n]);
 
 int main(int argc, char *argv[]) {
 	//declaracion de variables
-	double X[n]={3, 4.5, 7, 9}, Y[n]={2.5, 1, 2.5, 0.5};; //datos
+	double X[n]={1.0,1.2,1.5,1.75,2.0}, Y[n]={-0.148,-0.040,0.181,0.419,0.700}; //datos
 	double A[n][n], B[n], Xi[n];
 	printf("----------------------------------\n");
 	printf("Armamos el polinomio interpolador:\n");
@@ -92,7 +92,7 @@ void gauss(double A[n][n], double B[n], double X[n]){
 	//Impresion de los valores de X
 	printf("\nLos valores de las incognitas son:\n");
 	for(int i=0; i<n; i++){
-		printf("X[%d]= %.2lf \n", i+1, X[i]);
+		printf("X[%d]= %lf \n", i+1, X[i]);
 	}
 }
 	
@@ -111,12 +111,12 @@ void armar(double A[n][n], double B[n], double Xi[n], double X[n], double Y[n]){
 			printf(" %s ", Xi[i] >= 0 ? "+ " : "- ");
 		}
 		if(i == 0){
-			printf("%.2lf", Xi[i]);
+			printf("%lf", Xi[i]);
 		} else 
 		   if (i == 1) {
-			   printf("%.2lfx", fabs(Xi[i]));
+			   printf("%lfx", fabs(Xi[i]));
 		} else {
-			   printf("%.2lfx^%d", fabs(Xi[i]), i);
+			   printf("%lfx^%d", fabs(Xi[i]), i);
 		   }
 	}
 	printf("\n\n");
@@ -132,7 +132,7 @@ double suma=0;
 	for(int i=0; i<n; i++){
 		suma=suma + Xi[i]*pow(v_interpolar, i);
 	}
-	printf("\nEl valor interpolado es %.2lf", suma);
+	printf("\nEl valor interpolado es %lf", suma);
 
 	
 }

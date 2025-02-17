@@ -126,7 +126,7 @@ void gauss(double **A, double *B, double *X, int p){
 	//Impresion de los valores de X
 	printf("\nLos valores de las incognitas son:\n");
 	for(int i=0; i<b; i++){
-		printf("X[%d]= %.2lf \n", i+1, X[i]);
+		printf("X[%d]= %lf \n", i+1, X[i]);
 	}
 }
 void imprimir (double **A, double *B, int p){
@@ -170,12 +170,12 @@ printf("\nEl polinomio obtenido es:\nP(x)=");
 			printf(" %s ", Xi[i] >= 0 ? "+ " : "- ");
 		}
 		if(i == 0){
-			printf("%.2lf", Xi[i]);
+			printf("%lf", Xi[i]);
 		} else 
 		   if (i == 1) {
-			   printf("%.2lfx", fabs(Xi[i]));
+			   printf("%lfx", fabs(Xi[i]));
 		} else {
-			   printf("%.2lfx^%d", fabs(Xi[i]), i);
+			   printf("%lfx^%d", fabs(Xi[i]), i);
 		   }
 	}
 }

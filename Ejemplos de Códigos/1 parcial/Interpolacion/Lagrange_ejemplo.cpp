@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ctime>
-#define n 3 //cantidad de datos (contado desde o)
+#define n 5 //cantidad de datos (contado desde o)
 using namespace std;
 
 void cargar(double X[n], double Y[n]);
@@ -8,7 +8,7 @@ void imprimir(double X[n], double Y[n]);
 void interpolacion(double X[n], double Y[n]);
 int main(int argc, char *argv[]) {
 	//declaracion de var
-	double X[n]={1,2, 2.35}, Y[n]={3,3, 3.3}; //datos
+	double X[n]={1.0,1.2,1.5,1.75,2.0}, Y[n]={-0.148,-0.040,0.181,0.419,0.700}; //datos
 	srand(time(NULL));
 	//inicio
 	imprimir(X, Y);
@@ -56,5 +56,5 @@ void interpolacion(double X[n], double Y[n]){
 		}
 		suma = suma + (Y[i] * producto);
 	}
-	printf("\nEl valor interpolado es %.2lf", suma);
+	printf("\nEl valor interpolado es %lf", suma);
 }
