@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
-#define n 3 //definimos tamanio matriz
+#define n 15 //definimos tamanio matriz
 using namespace std;
 /*Cada componente de xx se actualiza inmediatamente en la misma iteración, 
 lo que significa que los valores recién calculados de la iteración actual 

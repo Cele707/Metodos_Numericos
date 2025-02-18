@@ -4,15 +4,15 @@
 
 // Funciones que definen el sistema de EDOs
 double F1(double x, double y1, double y2) {
-	return 3 * x + y2;
+	return y2;
 }
 
 double F2(double x, double y1, double y2) {
-	return pow(x, 2) - y1 - 1;
+	return -y1 + 4*cos(x);
 }
 
 int main() {
-	double x0 = 0.0, xf = 1.0, h;
+	double x0 = 0.0, xf = 2.0, h;
 	int n, op_menu;
 	
 	// Entrada de datos
@@ -47,7 +47,7 @@ int main() {
 
 	x[0] = x0;
 	y1[0] = 0.0;
-	y2[0] = 1.0;
+	y2[0] = 0.0;
 	
 	FILE *file = fopen("RK4_Sistema_EDO2.txt", "w");
 	if (file == NULL) {

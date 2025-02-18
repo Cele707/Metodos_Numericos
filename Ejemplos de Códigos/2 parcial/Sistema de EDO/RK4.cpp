@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define num_ecuaciones 2 //ES NECAEARIO HARDCODEAR CUANTAS FUNCIONES HAY EN EL SISTEMA
+#define num_ecuaciones 3 //ES NECAEARIO HARDCODEAR CUANTAS FUNCIONES HAY EN EL SISTEMA
 // Función para evaluar las ecuaciones diferenciales
 double F(double x, double *y, int index) {
 	switch (index) {
-	case 0: return 3 * x + y[1]; // F1(x, y1, y2) = 3x + y2
-	case 1: return pow(x, 2) - y[0] - 1; // F2(x, y1, y2) = x^2 - y1 - 1
+	case 0: return y[1]; 
+	case 1: return y[2];
+	case 2: return 4*y[2] - 24*y[0] + 24*pow(x,2) - 16;
 	default: return 0; // Si hay más ecuaciones, añadir más casos aquí
 	}
 }
 
 int main() {
-	double x0 = 0.0, xf = 1.0, h = 0;
+	double x0 = 0.0, xf = 2.0, h = 0;
 	int n = 0, op_menu = 0;
 	
 	// Apertura del archivo para guardar resultados
@@ -64,7 +65,8 @@ int main() {
 	// Inicialización de condiciones iniciales
 	x[0] = x0;
 	y[0] = 0.0; // Condición inicial para y1
-	y[1] = 1.0; // Condición inicial para y2
+	y[1] = -1.0; // Condición inicial para y2
+	y[2] = 4.0;
 	for (int i = 2; i < num_ecuaciones; i++) {
 		y[i] = 0.0; // Inicializar las demás ecuaciones en 0 por defecto
 	}
