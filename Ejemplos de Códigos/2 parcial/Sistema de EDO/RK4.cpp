@@ -13,7 +13,7 @@ double F(double x, double *y, int index) {
 }
 
 int main() {
-	double x0 = 0.0, xf = 2.0, h = 0;
+	double x0 = 0.0, xf = 2300.0, h = 0;
 	int n = 0, op_menu = 0;
 	
 	// Apertura del archivo para guardar resultados
@@ -65,8 +65,8 @@ int main() {
 	// Inicialización de condiciones iniciales
 	x[0] = x0;
 	y[0] = 0.0; // Condición inicial para y1
-	y[1] = -1.0; // Condición inicial para y2
-	y[2] = 4.0;
+	y[1] = 2300; // Condición inicial para y2
+	y[2] = 2;
 	for (int i = 2; i < num_ecuaciones; i++) {
 		y[i] = 0.0; // Inicializar las demás ecuaciones en 0 por defecto
 	}

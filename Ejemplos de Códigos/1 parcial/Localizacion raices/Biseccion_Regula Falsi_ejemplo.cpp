@@ -7,7 +7,7 @@ void biseccion (double, double, int);
 
 //funcion
 double funcion(double x){
-	return(log(pow(x,2)+1)-sin(x));
+	return pow(x, 3) - 4*x +cos(x);
 }
 int main(int argc, char *argv[]) {
 	//declaracion de variables
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 //metodo de la biseccion
 void biseccion (double a, double b, int iter){
 	//declaracion
-	double tol=10*exp(-10);
+	double tol=10*exp(-8);
 	double error, error_p, c;
 	//inicio
 	if((funcion(a)*funcion(b))>0){//comprabamos que haya raiz en el intervalo
@@ -52,7 +52,7 @@ void biseccion (double a, double b, int iter){
 			}
 			error=(b-a)/2;
 			error_p=abs((b-a)/2) * (1/c) * 100;
-		} while(error > tol && iter<=9);
-		printf("\nLa raiz es %lf\nEl error absoluto es %lf y el error porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d", c, error, error_p, iter);
+		} while(error > tol && iter<=10000);
+		printf("\nLa raiz es %.12lf\nEl error absoluto es %lf y el error porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d", c, error, error_p, iter);
 	}
 }

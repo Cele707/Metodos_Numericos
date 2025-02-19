@@ -8,13 +8,13 @@
 using namespace std;
 
 double f(double x ,double y) {
-	return ((x*exp(pow(x, 2)))/y);
+	return -0.05*(x-50)+2*cos(x);
 }
 
 int main(int argc, char *argv[]) {
 	double x0 = 0.0;
 	double xf = 1.0; // Inicializado a un valor arbitrario
-	double y0 = 1.0;
+	double y0 = 80;
 	double h = 0.1;
 	int n = 0;
 	double k1, k2, k3, k4;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 	// Escribir los valores iniciales en el archivo
-	fprintf(file, "%lf\t%lf\n", x0, y0);
+	fprintf(file, "%.10lf\t%.10lf\n", x0, y0);
 	
 	printf("--Metodo de RK4 (Error de orden h^4)--\n");
 	do{
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 		y[0] = y0;
 		
 		printf("\nTabla de Datos obtenida:\n");
-		printf("X0 = %lf \tY0 = %lf", x0, y0); // Se imprime el primer el x0 e y0
+		printf("X0 = %.10lf \tY0 = %.10lf", x0, y0); // Se imprime el primer el x0 e y0
 		for(int i = 0; i < n; i++) {  // Cambié de n-1 a n para calcular todos los puntos
 			k1 = f(x[i], y[i]);
 			k2 = f(x[i] + 0.5 * h, y[i] + 0.5 * h * k1);
@@ -69,8 +69,8 @@ int main(int argc, char *argv[]) {
 			
 			y[i + 1] = y[i] + (h / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4);
 			x[i + 1] = x[i] + h;
-			printf("\nX%d = %lf \tY%d = %lf", i+1, x[i+1], i+1, y[i+1]);
-			fprintf(file, "%lf\t%lf\n",x[i+1], y[i+1]);
+			printf("\nX%d = %.10lf \tY%d = %.10lf", i+1, x[i+1], i+1, y[i+1]);
+			fprintf(file, "%.10lf\t%.10lf\n",x[i+1], y[i+1]);
 		}
 		return 0;
 		

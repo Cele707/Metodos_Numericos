@@ -18,13 +18,13 @@ int main(int argc, char *argv[]) {
 }
 //FUNCIONES
 double funcion (double x){ //funcion a definir
-	return(log(pow(x,2)+1)-sin(x));
+	return(pow(x,3) - 4 * x+cos(x));
 }
 double derivada_f(double x){//derivada de la funcion
-	return((2*x / (pow(x,2)+1)) - cos(x));
+	return(3*pow(x, 2)- 4 - sin(x));
 }
 void newton_raphson (double x_viejo){
-	double tol=10*exp(-10);
+	double tol=10*exp(-8);
 	double error, error_porcentual, x_nuevo;
 	int iteracion=0;
 	do{
@@ -43,5 +43,5 @@ void newton_raphson (double x_viejo){
 		
 		
 	} while(error > tol && iteracion<=0);
-	printf("\nLa raiz es %lf\nEl error aproximado es %lf y el porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d",x_viejo, error, error_porcentual, iteracion);
+	printf("\nLa raiz es %.12lf\nEl error aproximado es %lf y el porcentual es %lf\nLa cantidad de iteraciones realizadas es de %d",x_viejo, error, error_porcentual, iteracion);
 }

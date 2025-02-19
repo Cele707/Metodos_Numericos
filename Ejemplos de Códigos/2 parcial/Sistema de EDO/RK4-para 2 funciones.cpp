@@ -12,11 +12,11 @@ double F2(double x, double y1, double y2) {
 }
 
 int main() {
-	double x0 = 0.0, xf = 2.0, h;
+	double x0 = 0, xf = 2, h;
 	int n, op_menu;
 	
 	// Entrada de datos
-	printf("Seleccione un m\u00e9todo para definir el paso:\n");
+	printf("Seleccione un metodo para definir el paso:\n");
 	printf("1- Ingresar cantidad de subintervalos (n)\n");
 	printf("2- Ingresar ancho del intervalo (h)\n");
 	printf("Respuesta: ");
@@ -78,7 +78,6 @@ int main() {
 		printf("X%d = %lf\tY1%d = %lf\tY2%d = %lf\n", i + 1, x[i + 1], i + 1, y1[i + 1], i + 1, y2[i + 1]);
 		fprintf(file, "%lf\t%lf\t%lf\n", x[i + 1], y1[i + 1], y2[i + 1]);
 	}
-	
 	
 	fclose(file);
 	free(x);

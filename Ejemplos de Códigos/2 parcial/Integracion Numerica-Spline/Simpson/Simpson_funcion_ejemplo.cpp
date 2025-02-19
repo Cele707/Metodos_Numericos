@@ -13,9 +13,9 @@ void Simpson(double a, double b, int n);
 
 int main(int argc, char *argv[]) {
 //declaracion de var
-	double a=0; 
-	double b=pi/2;
-	int n=2;
+	double a=1; 
+	double b=5;
+	int n=4;
 //inicio
 	Simpson(a, b, n);
 	
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 }
 //funciones
 double funcion (double x){
-	return ((2*sin(x))+(cos(x)));
+	return (5+3*pow(x, 3));
 }
 void Simpson(double a, double b, int n){
 //declaracion de var

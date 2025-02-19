@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
-#define n 3 // Tamaño de la matriz
+#define n 4 // Tamaño de la matriz
 using namespace std;
 
 void cargar(double A[n][n], double B[n]);
@@ -64,7 +64,7 @@ void imprimir(double A[n][n], double B[n]) {
 void Gauss_Seidel(double A[n][n], double B[n], double omega) {
 	double Xv[n] = {0}; // Valores anteriores
 	double Xn[n] = {0}; // Valores nuevos
-	double tol = 1e-10;
+	double tol = pow(10, -5);
 	double error = 0, error_anterior = 0, suma = 0;
 	int iter = 0;
 	
@@ -107,7 +107,7 @@ void Gauss_Seidel(double A[n][n], double B[n], double omega) {
 	
 	printf("\nLas soluciones del sistema luego de %d iteraciones:\n\n", iter);
 	for (int i = 0; i < n; i++) {
-		printf("X[%d]: %.6lf\n", i, Xn[i]);
+		printf("X[%d]: %.12lf\n", i, Xn[i]);
 	}
-	printf("\nEl error aproximado es %.10lf\n", error);
+	printf("\nEl error aproximado es %.12lf\n", error) ;
 }

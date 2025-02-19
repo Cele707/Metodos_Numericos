@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 }
 //
 double f (double x){
-	return((2*x/(pow(x, 2)+1))-cos(x));
+	return 10 * exp(0.05 * 47.5) * pow(x, 0.02);
 }
 	
 void gauss_legendre(){

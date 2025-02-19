@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
-#define n 5 //cantidad de datos (contado desde o)
+#define n 21 //cantidad de datos (contado desde o)
 
 /*usamos una curva que sigue el patrón de
  los datos de manera más precisa. 
@@ -16,7 +16,8 @@ void armar_polinomio(double *Xi, int p);
 
 int main(int argc, char *argv[]) {
 //declaracion de variables
-	double X[n]={0,1, 1.5, 3, 5}, Y[n]={1.2,2.7, 3.9, 7.1, 10}; //datos
+	double X[n]={0.00, 2.00, 5.00, 7.00, 10.00};
+	double Y[n]={10.00, 25.00, 40.00, 55.00, 65.00};
 	int p=0;
 //inicio
 	//ingresar orden polinomio

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
-#define n 15 //definimos tamanio matriz
+#define n 4 //definimos tamanio matriz
 using namespace std;
 /*Cada componente de xx se actualiza inmediatamente en la misma iteración, 
 lo que significa que los valores recién calculados de la iteración actual 
@@ -68,7 +68,7 @@ void Gauss_Seidel(double A[n][n], double B[n]){
 	//declaracion de variables
 	double Xv[n] = {0}; //soluciones anteriores
 	double Xn[n] = {0}; //solucoines nuevas
-	double tol=10*exp(-10); //tolerancia
+	double tol=10*exp(-5); //tolerancia
 	double error=0, error_anterior=0, suma=0;
 	int iter=0;
 	//inicio
@@ -134,9 +134,9 @@ void Gauss_Seidel(double A[n][n], double B[n]){
 		
 	printf("\nLas soluciones del sistema luego de %d iteraciones:\n\n", iter);
 		for(int i=0; i<n; i++){
-			printf("X[%d]: %.2lf\n", i, Xn[i]);
+			printf("X[%d]: %lf\n", i, Xn[i]);
 		}
-		printf("\nEl error aproximado es %.10lf\n", error);
+		printf("\nEl error aproximado es %.12lf\n", error);
 }
 			
 			

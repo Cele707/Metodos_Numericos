@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define n 3 //definimos tama�o matriz
+#define n 4 //definimos tama�o matriz
 
 using namespace std;
 //funciones
@@ -57,9 +57,9 @@ void imprimir (double A[n][n], double B[n]){
 	printf("\nLa matriz se ve de esta manera:\n");
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
-			printf("%.2lf \t", A[i][j]);
+			printf("%lf \t", A[i][j]);
 		}
-		printf("| %.2lf\n", B[i]);
+		printf("| %lf\n", B[i]);
 	}
 }
 void gauss(double A[n][n], double B[n]){
@@ -127,6 +127,6 @@ void gauss(double A[n][n], double B[n]){
 	//Impresion de los valores de X
 	printf("\nLos valores de las incognitas son:\n");
 	for(int i=0; i<n; i++){
-		printf("X[%d]= %.2lf \n", i+1, X[i]);
+		printf("X[%d]= %lf \n", i+1, X[i]);
 	}
 }

@@ -29,8 +29,8 @@ int main(int argc, char *argv[]) {
 	double b[TAM] = {0};// Inicializamos el vector b con ceros
 	double* X = (double*)malloc((4*(CANT_PUNTOS-1)) * sizeof(double));
 	//puntos
-	double x[TAM]={1.00, 1.20, 1.45, 1.78, 2.00};
-	double y[TAM]={-0.1483, -0.0400, 0.1395, 0.4493, 0.7001};
+	double x[TAM]={0.00, 2.00, 5.00, 7.00, 10.00};
+	double y[TAM]={10.00, 25.00, 40.00, 55.00, 65.00};
 	
 	//spline cubico
 	spline_cubico(A, b, x, y);
